@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     margin: 0;
     height: 100vh;
@@ -6,12 +10,12 @@ body{
 }
 
 nav{
-    width: 100vw;
+    width: 100%;
     height: 15vh;
 }
 
 nav > div{
-    width: calc(50% - 1vw/4);
+    width: calc(50% - 1%/12);
     background-color: orange;
     margin: 0;
 }
@@ -31,9 +35,18 @@ nav > div{
     height: 30vh;
 }
 
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
 .section2 > div{
-    width: calc((100vw - (2vw/3)) / 3);
+    width: calc((100% - 6px) / 3);
     background-color: blue;
+    margin: 0 1px;
 }
 
 footer{
@@ -43,7 +56,8 @@ footer{
 
 footer > div{
     background-color: gray;
-    width: calc(25% - 1vw/4);
+    width: calc(25% - 2px);
+    margin: 0 1px;
 }
 
 
