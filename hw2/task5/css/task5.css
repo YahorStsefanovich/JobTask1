@@ -1,0 +1,137 @@
+body{
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    overflow: hidden;
+}
+
+div{
+    margin: 1vh;
+}
+
+/*For others*/
+@media only screen
+and (min-device-width: 1025px)
+{
+
+    body{
+        grid-template-rows: 1fr 5fr 2fr;
+    }
+
+    header{
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+    }
+
+    header > div:nth-child(1){
+        background-color: red;
+    }
+
+    header > div:nth-child(2){
+        background-color: orange;
+    }
+
+    section{
+        display: grid;
+    }
+
+    section > div{
+        background-color: green;
+    }
+
+    footer{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    footer > div:nth-child(1){
+        background-color: brown;
+    }
+
+    footer > div:nth-child(2){
+        background-color: blue;
+    }
+
+    footer > div:nth-child(3){
+        background-color: blueviolet;
+    }
+}
+
+/*For iphones*/
+@media only screen
+and (max-device-width : 767px)
+{
+
+    body{
+        grid-template-rows: 3fr 2fr 7fr;
+    }
+    body > *{
+        margin: 1vh;
+    }
+
+
+    header{
+        background-color: green;
+        display: block;
+    }
+
+    section{
+        display: block;
+        background-color: blueviolet;
+    }
+
+    footer{
+        display: block;
+        background-color: red;
+    }
+
+}
+
+/*For ipads*/
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1366px)
+{
+    body{
+        grid-template-rows: 1fr 7fr 3fr;
+    }
+
+    header{
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+    }
+
+    header > div:nth-child(1){
+        background-color: orange;
+    }
+
+    header > div:nth-child(2){
+        background-color: blueviolet;
+    }
+
+    section{
+        display: grid;
+    }
+
+    section > div{
+        background-color: red;
+    }
+
+    footer{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    footer > div:nth-child(1){
+        background-color: green;
+    }
+
+    footer > div:nth-child(2){
+        background-color: blue;
+    }
+
+    footer > div:nth-child(3){
+        display: none;
+    }
+}
