@@ -7,11 +7,12 @@ body{
 
 .wrapper{
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 1vh;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     background-color: #fff;
     color: #444;
+    height: 100%;
 }
 
 .box {

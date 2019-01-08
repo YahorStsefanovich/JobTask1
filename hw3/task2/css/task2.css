@@ -1,0 +1,107 @@
+body{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.wrapper{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 3fr 3fr;
+    grid-gap: 1vh;
+    height: 95%;
+    margin: 1vw;
+}
+
+.inner{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr;
+    grid-gap: 1vw;
+}
+
+.inner > div{
+    border: 1px solid red;
+    text-align: center;
+    color: white;
+    justify-content: center;
+}
+
+.inner11{
+    background-color: yellow;
+}
+
+.inner12{
+    background-color: turquoise;
+}
+
+.inner13{
+    background-color: orange;
+}
+
+.inner14{
+    background-color: darkgoldenrod;
+}
+
+.inner21{
+    background-color: green;
+}
+
+.inner22{
+    background-color: blueviolet;
+}
+
+.inner23{
+    background-color: #45a049;
+}
+
+.inner24{
+    background-color: blue;
+}
+
+.inner31{
+    background-color: red;
+}
+
+.inner32{
+    background-color: orange;
+}
+
+.inner33{
+    background-color: brown;
+}
+
+.inner34{
+    background-color: yellowgreen;
+}
+
+.inner41{
+    background-color: darkgreen;
+}
+
+.inner42{
+    background-color: gray;
+}
+
+.inner43{
+    background-color: cornflowerblue;
+}
+
+.inner44{
+    background-color: yellowgreen;
+}
+
+.inner51{
+    background-color: orangered;
+}
+
+.inner52{
+    background-color: darkmagenta;
+}
+
+.inner53{
+    background-color: darkslategray;
+}
+
+.inner54{
+    background-color: violet;
+}
