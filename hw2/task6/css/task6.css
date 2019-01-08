@@ -1,0 +1,61 @@
+body{
+    margin: 0;
+    width: 100vw;
+    max-height: 100vh;
+    /*overflow: hidden;*/
+}
+
+div{
+    background-color: white;
+    margin: 1vh;
+}
+
+div > img{
+    max-width: 100%;
+}
+
+p{
+    text-align: center;
+    margin: 0;
+}
+
+section{
+    margin: 1vh;
+    background-color: gray;
+    border-radius: 1px;
+    height: 100%;
+}
+
+@media all
+and (min-width: 1080px) {
+    section{
+        width: 100%;
+    }
+
+    div{
+        width: calc((100%/5) - 2vh);
+        margin: 1vh;
+        height: 25%;
+        float: left;
+    }
+}
+
+@media all
+and (max-width : 1079px) {
+    section{
+        width: 100%;
+    }
+
+    div{
+        width: calc((100%/4) - 2vh);
+        margin: 1vh;
+        height: 20%;
+        float: left;
+    }
+
+    section > div:nth-child(9),
+    section > div:nth-child(10){
+        width: calc((100%/2) - 2vh);
+        height: 40%;
+    }
+}
