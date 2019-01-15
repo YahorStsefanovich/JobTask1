@@ -1,0 +1,47 @@
+body{
+    margin: 0 20vw;
+    /*width: 100%;*/
+}
+
+.container, form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    height:30px;
+    font-size: 18pt;
+    margin: 2vh;
+}
+
+input, select, div{
+    font-size: 14pt;
+    justify-self: center;
+    height: 100%;
+}
+
+#sendBtn{
+    justify-self: center;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border-radius: 2vh;
+    color: white;
+    text-align: center;
+}
+
+input[type="text"],select{
+    align-self: flex-end;
+    width: 60%;
+}
+
+.computingServer, .ultrabook{
+    display: none;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/main.js"></script>
+    <script src="../js/changeForm.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <form action="" method="post">
+
+            <div class="row">
+                <label for="computerType">Choose type of computer:</label>
+                <select name="computerType" id="computerType">
+                    <option value="computer">Computer</option>
+                    <option value="ultrabook">Ultrabook</option>
+                    <option value="computingServer">Computing server</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <label for="processorType">Processor type: </label>
+                <input id="processorType" type="text" placeholder="Processor type..">
+            </div>
+
+            <div class="row">
+                <label for="coresCount">Cores count: </label>
+                <input id="coresCount" type="text" placeholder="Cores count..">
+            </div>
+
+            <div class="row">
+                <label for="frequency">Frequency: </label>
+                <input id="frequency" type="text" placeholder="Frequency..">
+            </div>
+
+            <div class="row">
+                <label for="bitDepth">Bit depth: </label>
+                <input id="bitDepth" type="text" placeholder="Bit depth..">
+            </div>
+
+            <div class="row ultrabook">
+                <label for="graphicsCard">Graphics card: </label>
+                <input id="graphicsCard" type="text" placeholder="Graphics card..">
+            </div>
+
+            <div class="row ultrabook">
+                <label for="ramSize">Ram size: </label>
+                <input id="ramSize" type="text" placeholder="Ram size..">
+            </div>
+
+            <div class="row computingServer">
+                <label for="isHiperThreading">Has hiper threading or not: </label>
+                <input id="isHiperThreading" type="text" placeholder="Has hiper threading or not..">
+            </div>
+
+            <div class="row computingServer">
+                <label for="hddSize">Hdd size: </label>
+                <input id="hddSize" type="text" placeholder="Hdd size..">
+            </div>
+
+        </form>
+        <div id="sendBtn">Serialize</div>
+    </div>
+
+</body>
+</html>
