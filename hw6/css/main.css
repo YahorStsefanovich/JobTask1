@@ -1,0 +1,9 @@
+table {
+    margin: 5vh 0;
+    width: 100%;
+}
+
+td, th{
+    /*font-size: 14pt;*/
+    padding: 1vw!important;
+}
