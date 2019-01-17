@@ -1,4 +1,5 @@
 let url = "http://jsonplaceholder.typicode.com/YegorSvelogorskiy/JobTask1/users";
+let data = [];
 
 window.onload = init;
 
@@ -7,6 +8,41 @@ function init() {
         ev.preventDefault();
         getData();
     });
+
+    document.getElementById("delete").addEventListener("click", (ev)=>{
+        ev.preventDefault();
+        deleteData();
+    });
+}
+
+function deleteData() {
+    let checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+
+    for (let index = 1; index < checkBoxes.length; index++){
+        if (checkBoxes[index].checked){
+            deleteRow(data[index - 1].id);
+        }
+    }
+}
+
+function deleteRow(id) {
+    let xhr = new XMLHttpRequest();
+    tempUrl = `${url}?id=${id}`;
+    xhr.open('DELETE', tempUrl, true);
+    xhr.send();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+
+        if (!(xhr.status in [200, 202, 204])){
+            alert(`${xhr.status}:${xhr.statusText}`);
+        }
+        else {
+            // console.log(JSON.parse(xhr.responseText));
+            getData();
+        }
+
+    }
 }
 
 function getData() {
@@ -22,8 +58,9 @@ function getData() {
             alert(`${xhr.status}:${xhr.statusText}`);
         }
         else {
-            console.log(JSON.parse(xhr.responseText));
-            showData(JSON.parse(xhr.responseText));
+            data = JSON.parse(xhr.responseText);
+            console.log(data);
+            showData(data);
         }
 
     }
@@ -54,8 +91,16 @@ function getUrl() {
     return resultUrl;
 }
 
+function removeTable() {
+    let tables = document.querySelectorAll("table");
+    if (tables.length){
+        tables[0].remove();
+    }
+}
+
 function showData(data) {
-    if (data !== []){
+    if (data.length !== 0){
+        removeTable();
         let table = document.createElement("table");
         table.className = "table-striped";
 
@@ -83,6 +128,9 @@ function showData(data) {
         table.appendChild(body);
 
         document.getElementsByClassName('container')[0].appendChild(table);
+        createCheckboxes();
+
+        document.getElementById("delete").style.visibility = "visible";
     }
 }
 
@@ -96,4 +144,36 @@ function createRow(tag, values) {
     }
 
     return row;
+}
+
+//checkboxes for data removing
+function createCheckboxes() {
+    let rows = document.querySelectorAll("tr");
+
+    //head checkBox for multiple selection
+    let checkbox = document.createElement('input');
+    checkbox.setAttribute('type', "checkbox");
+    checkbox.id = "selectAll";
+    checkbox.value = "selectAll";
+    checkbox.addEventListener( 'change', function() {
+        let checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+        if(this.checked) {
+            for (let index = 1; index < checkBoxes.length; index++){
+                checkBoxes[index].checked = true;
+            }
+        } else {
+            for (let index = 1; index < checkBoxes.length; index++){
+                checkBoxes[index].checked = false;
+            }
+        }
+    });
+
+    rows[0].appendChild(checkbox);
+
+    for (let index = 1; index < rows.length; index++){
+        let checkbox = document.createElement('input');
+        checkbox.setAttribute('type', "checkbox");
+        checkbox.id = data[index - 1].id;
+        rows[index].appendChild(checkbox);
+    }
 }
