@@ -1,4 +1,5 @@
 let url = "http://jsonplaceholder.typicode.com/YegorSvelogorskiy/JobTask1/users";
+// let url = "http://jsonplaceholder.typicode.com/users";
 let data = [];
 
 window.onload = init;
@@ -10,7 +11,7 @@ function init() {
     });
 
     document.getElementById("delete").addEventListener("click", (ev)=>{
-        ev.preventDefault();
+        // ev.preventDefault();
         deleteData();
     });
 }
@@ -27,19 +28,21 @@ function deleteData() {
 
 function deleteRow(id) {
     let xhr = new XMLHttpRequest();
-    tempUrl = `${url}?id=${id}`;
+    // tempUrl = `${url}?id=${id}`;
+    tempUrl = `${url}/id`;
     xhr.open('DELETE', tempUrl, true);
     xhr.send();
 
-    xhr.onreadystatechange = function() {
+    xhr.onload = function() {
         if (xhr.readyState !== 4) return;
 
         if (!(xhr.status in [200, 202, 204])){
-            alert(`${xhr.status}:${xhr.statusText}`);
+            // alert(`${xhr.status}:${xhr.statusText}`);
+            console.log(xhr.responseText);
         }
         else {
-            // console.log(JSON.parse(xhr.responseText));
-            getData();
+            console.log(xhr.responseText);
+            //getData();
         }
 
     }
