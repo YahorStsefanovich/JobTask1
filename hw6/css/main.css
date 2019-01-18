@@ -10,3 +10,7 @@ td, th{
 #delete{
     visibility: hidden;
 }
+
+tbody tr:hover{
+    cursor: pointer;
+}

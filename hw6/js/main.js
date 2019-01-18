@@ -20,6 +20,34 @@ function init() {
         ev.preventDefault();
         postData();
     });
+
+    document.getElementById("put").addEventListener("click", (ev)=>{
+        ev.preventDefault();
+        putData();
+    });
+}
+
+function putData() {
+    let json = JSON.stringify(data);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("PUT", url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.send(json);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+
+        if (xhr.status !== 20){
+            alert(`${xhr.status}:${xhr.statusText}`);
+        }
+        else {
+            console.log(xhr.responseText);
+            clearAllField();
+            getData();
+        }
+
+    };
 }
 
 function postData(){
@@ -137,7 +165,7 @@ function getValueFromInput(id) {
 function getUrl() {
     let resultUrl = url;
 
-    let inputs = document.querySelectorAll("input[type=text]");
+    let inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
     let filter = "";
     for (let i = 0; i < inputs.length; i++){
         if (inputs[i].value !== ""){
@@ -207,7 +235,30 @@ function createRow(tag, values) {
         row.appendChild(column);
     }
 
+    if (tag === "td"){
+        row.id = values[0];
+        row.addEventListener("click", (ev)=>{
+            ev.preventDefault();
+            onRowClick(row.id);
+        });
+    }
+
     return row;
+}
+
+function onRowClick(id) {
+    let row = data.find((elem)=>{
+        return elem.id == id;
+    });
+
+    document.getElementById("id").value = row.id;
+    document.getElementById("name").value = row.name;
+    document.getElementById("username").value = row.username;
+    document.getElementById("email").value = row.email;
+    document.getElementById("address").value = row.address.street;
+    document.getElementById("phone").value = row.phone;
+    document.getElementById("website").value = row.website;
+    document.getElementById("company").value = row.company.name;
 }
 
 //checkboxes for data removing
