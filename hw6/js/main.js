@@ -26,9 +26,9 @@ function postData(){
     let textBoxes = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
     let textValues = [];
 
-    for (let i = 0; i < textBoxes.length; i++){
+    for (let i = 1; i < textBoxes.length; i++){
         if (textBoxes[i].value === ""){
-            alert("You should fill all fields to post data!");
+            alert("You should fill all fields (besides id) to post data!");
             return;
         }
         textValues.push(textBoxes[i].value);
