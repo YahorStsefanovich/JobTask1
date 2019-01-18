@@ -15,6 +15,67 @@ function init() {
         ev.preventDefault();
         deleteData();
     });
+
+    document.getElementById("post").addEventListener("click", (ev)=>{
+        ev.preventDefault();
+        postData();
+    });
+}
+
+function postData(){
+    let textBoxes = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+    let textValues = [];
+
+    for (let i = 0; i < textBoxes.length; i++){
+        if (textBoxes[i].value === ""){
+            alert("You should fill all fields to post data!");
+            return;
+        }
+        textValues.push(textBoxes[i].value);
+    }
+
+    let user = new User(textValues);
+    let jsonUser = JSON.stringify(user);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+    xhr.send(jsonUser);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+
+        if (xhr.status !== 201){
+            alert(`${xhr.status}:${xhr.statusText}`);
+        }
+        else {
+            console.log(xhr.responseText);
+            clearAllField();
+            getData();
+        }
+
+    }
+}
+
+function clearAllField() {
+    let textBoxes = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+
+    for (let i = 0; i < textBoxes.length; i++){
+        textBoxes[i].value = "";
+    }
+}
+
+function User(args) {
+    // this.id = args[0];
+    this.name = args[1];
+    this.username = args[2];
+    this.email = args[3];
+    this.address = {};
+    this.address.street = args[4];
+    this.phone = args[5];
+    this.website = args[6];
+    this.company ={};
+    this.company.name = args[7];
 }
 
 function deleteData() {
@@ -29,7 +90,6 @@ function deleteData() {
 
 function deleteRow(id) {
     let xhr = new XMLHttpRequest();
-    // tempUrl = `${url}?id=${id}`;
     tempUrl = `${url}/${id}`;
     xhr.open('DELETE', tempUrl, true);
     xhr.send();
@@ -37,7 +97,7 @@ function deleteRow(id) {
     xhr.onload = function() {
         if (xhr.readyState !== 4) return;
 
-        if (xhr.status != 200){
+        if (xhr.status !== 200){
             alert(`${xhr.status}:${xhr.statusText}`);
             //console.log(xhr.responseText);
         }
