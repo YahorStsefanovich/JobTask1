@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Homework 6</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="../css/main.css">
     <script src="../js/main.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/tooltip.js"></script>
 </head>
 <body>
     <div class="container">
@@ -45,10 +47,10 @@
                 <label for="company">Company:</label>
                 <input type="text" class="form-control" id="company" placeholder="Enter company" name="company">
             </div>
-            <button type="submit" class="btn btn-success" id="get">Get</button>
-            <button type="submit" class="btn btn-success" id="post">Post</button>
-            <button type="submit" class="btn btn-success" id="put">Put</button>
-            <button type="submit" class="btn btn-danger" id="delete">Delete selected</button>
+            <button data-toggle="tooltip" data-placement="right" title="Input unnesseccury fields to filter data" type="submit" class="btn btn-success" id="get">Get</button>
+            <button data-toggle="tooltip" data-placement="right" title="Input all fields besides ID to post data" type="submit" class="btn btn-success" id="post">Post</button>
+            <button data-toggle="tooltip" data-placement="right" title="Click on some row and change values to put data" type="submit" class="btn btn-success" id="put">Put</button>
+            <button data-toggle="tooltip" data-placement="right" title="Check one or more checkboxes to delete" type="submit" class="btn btn-danger" id="delete">Delete selected</button>
         </form>
     </div>
 </body>

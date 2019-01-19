@@ -131,6 +131,7 @@ function deleteRow(id) {
         }
         else {
             console.log(xhr.responseText);
+            clearAllField();
             getData();
         }
 
@@ -238,7 +239,8 @@ function createRow(tag, values) {
     if (tag === "td"){
         row.id = values[0];
         row.addEventListener("click", (ev)=>{
-            ev.preventDefault();
+            // if (ev.target !== )
+            // ev.preventDefault();
             onRowClick(row.id);
         });
     }
