@@ -28,17 +28,29 @@ function init() {
 }
 
 function putData() {
-    let json = JSON.stringify(data);
+    let textBoxes = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+    let textValues = [];
+
+    for (let i = 1; i < textBoxes.length; i++){
+        if (textBoxes[i].value === ""){
+            alert("You should fill all fields to put data!");
+            return;
+        }
+        textValues.push(textBoxes[i].value);
+    }
+
+    let user = new User(textValues);
+    let jsonUser = JSON.stringify(user);
 
     let xhr = new XMLHttpRequest();
-    xhr.open("PUT", url, true);
+    xhr.open("PUT", `${url}/${document.getElementById("id").value}`, true);
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhr.send(json);
+    xhr.send(jsonUser);
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4) return;
 
-        if (xhr.status !== 20){
+        if (xhr.status !== 200){
             alert(`${xhr.status}:${xhr.statusText}`);
         }
         else {
@@ -95,15 +107,15 @@ function clearAllField() {
 
 function User(args) {
     // this.id = args[0];
-    this.name = args[1];
-    this.username = args[2];
-    this.email = args[3];
+    this.name = args[0];
+    this.username = args[1];
+    this.email = args[2];
     this.address = {};
-    this.address.street = args[4];
-    this.phone = args[5];
-    this.website = args[6];
+    this.address.street = args[3];
+    this.phone = args[4];
+    this.website = args[5];
     this.company ={};
-    this.company.name = args[7];
+    this.company.name = args[6];
 }
 
 function deleteData() {
@@ -239,8 +251,6 @@ function createRow(tag, values) {
     if (tag === "td"){
         row.id = values[0];
         row.addEventListener("click", (ev)=>{
-            // if (ev.target !== )
-            // ev.preventDefault();
             onRowClick(row.id);
         });
     }
