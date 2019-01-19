@@ -3,9 +3,7 @@ let url = "http://localhost:3000/users";
 // let url = "http://jsonplaceholder.typicode.com/users";
 let data = [];
 
-window.onload = init;
-
-function init() {
+(function (){
     document.getElementById("get").addEventListener("click", (ev)=>{
         ev.preventDefault();
         getData();
@@ -18,22 +16,22 @@ function init() {
 
     document.getElementById("post").addEventListener("click", (ev)=>{
         ev.preventDefault();
-        postData();
+        appendData(url, "POST", 201);
     });
 
     document.getElementById("put").addEventListener("click", (ev)=>{
         ev.preventDefault();
-        putData();
+        appendData(`${url}/${document.getElementById("id").value}`, "PUT", 200);
     });
-}
+}());
 
-function putData() {
+function appendData(url, method, goodStatus) {
     let textBoxes = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
     let textValues = [];
 
     for (let i = 1; i < textBoxes.length; i++){
         if (textBoxes[i].value === ""){
-            alert("You should fill all fields to put data!");
+            alert("You should fill all fields!");
             return;
         }
         textValues.push(textBoxes[i].value);
@@ -43,14 +41,14 @@ function putData() {
     let jsonUser = JSON.stringify(user);
 
     let xhr = new XMLHttpRequest();
-    xhr.open("PUT", `${url}/${document.getElementById("id").value}`, true);
+    xhr.open(method, url, true);
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhr.send(jsonUser);
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4) return;
 
-        if (xhr.status !== 200){
+        if (xhr.status !== goodStatus){
             alert(`${xhr.status}:${xhr.statusText}`);
         }
         else {
@@ -60,41 +58,6 @@ function putData() {
         }
 
     };
-}
-
-function postData(){
-    let textBoxes = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
-    let textValues = [];
-
-    for (let i = 1; i < textBoxes.length; i++){
-        if (textBoxes[i].value === ""){
-            alert("You should fill all fields (besides id) to post data!");
-            return;
-        }
-        textValues.push(textBoxes[i].value);
-    }
-
-    let user = new User(textValues);
-    let jsonUser = JSON.stringify(user);
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
-    xhr.send(jsonUser);
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState !== 4) return;
-
-        if (xhr.status !== 201){
-            alert(`${xhr.status}:${xhr.statusText}`);
-        }
-        else {
-            console.log(xhr.responseText);
-            clearAllField();
-            getData();
-        }
-
-    }
 }
 
 function clearAllField() {
