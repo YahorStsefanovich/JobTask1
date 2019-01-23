@@ -1,0 +1,18 @@
+body{
+    width: 100vw;
+    margin:0;
+}
+
+table{
+    width: 100%;
+}
+
+.container{
+    margin: 0;
+    width: 100%;
+}
+
+td{
+    max-width: 30vw;
+    word-wrap: break-word;
+}
