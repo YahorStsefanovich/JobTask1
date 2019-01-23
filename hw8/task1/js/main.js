@@ -1,8 +1,8 @@
-let photosUrl = "https://services.odata.org/V4/(S(1ygqx11nztz5vjjx22ow10jk))/TripPinServiceRW/Photos?$format=application/json;odata.metadata=none&";
-let peopleUrl = "https://services.odata.org/V4/(S(1ygqx11nztz5vjjx22ow10jk))/TripPinServiceRW/People?$format=application/json;odata.metadata=none&";
+let photosUrl = "https://services.odata.org/V4/(S(1ygqx11nztz5vjjx22ow10jk))/TripPinServiceRW/Photos?$count=true&$format=application/json;odata.metadata=none&";
+let peopleUrl = "https://services.odata.org/V4/(S(1ygqx11nztz5vjjx22ow10jk))/TripPinServiceRW/People?$count=true&$format=application/json;odata.metadata=none&";
+let baseUrl = "https://services.odata.org/V4/(S(1ygqx11nztz5vjjx22ow10jk))/TripPinServiceRW/";
 
 $(function(){
-
     //orderBy
     makeRequest( "Photos order by id asc",`${photosUrl}$orderby=Id asc`);
     //search
@@ -16,17 +16,10 @@ $(function(){
     //filter
     makeRequest( "Filter by firstName start with S",`${[peopleUrl]}$filter=startswith(FirstName, 'S')`);
     //filter with 3 params
-    makeRequest( "Filter by firstName=Scott or ",`${[peopleUrl]}$filter=Emails/any(s:endswith(s, 'contoso.com'))
-                                                                         `);
-
-
-    // //using $count
-    // $.getJSON(`${url}$count`, function (data) {
-    //     $("#content").append(`<tr>` +
-    //                             `<td>Count: ${data}</td>` +
-    //                         `</tr>`);
-    //     console.log(data);
-    // })
+    makeRequest( "Filter by Email endsWith 'contoso.com' or City contains 'Bo' and has Male Gender ",
+        `${[peopleUrl]}$filter=(Emails/any(s:endswith(s, 'contoso.com')))
+                           or (AddressInfo/any(r:contains(r/City/Name, 'Bo'))) 
+                           and (Gender eq Microsoft.OData.SampleService.Models.TripPin.PersonGender'Male')`);
 });
 
 function makeRequest(name, url) {
@@ -45,13 +38,15 @@ function makeRequest(name, url) {
             items.push(`<tr id='${key}'>${item}</tr>`);
         });
 
+        items.push(`<tr><td>Count: ${data["@odata.count"]}</td></tr>`);
+
         $("<h1/>", {
             html: `${name}`
         }).appendTo("#container");
 
         $("<table/>", {
             class: "table table-striped",
-            id: "content" + name,
+            // id: "content" + name,
             html: `<tbody>${items.join("")}</tbody>`
         }).appendTo("#container");
     });
